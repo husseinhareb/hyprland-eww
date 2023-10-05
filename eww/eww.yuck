@@ -1,4 +1,7 @@
 (defpoll mic_volume :interval "1s" "~/.config/eww/scripts/getmic")
+(defpoll speaker_volume :interval "1s" "scripts/getvol")
+(defpoll audio :interval "300ms" "scripts/audio")
+(defpoll time :interval "10s" "date '+%H:%M'")
 
 
 (defwidget bar []
@@ -10,15 +13,12 @@
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
     (metric :label "󰕾"
-            :value volume
+            :value speaker_volume
             :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
     (metric :label ""
-            :value {mic_volume}
+            :value mic_volume
             :onchange "pactl set-source-volume 0 {}%")
-      (button :onclick "openAnotherWidget()"
-      "click me")
     time))
-
 
 
 (defwidget workspaces []
@@ -61,12 +61,6 @@
 (deflisten music :initial ""
   "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
-(defpoll volume :interval "1s"
-  "scripts/getvol")
-
-(defpoll time :interval "10s"
-  "date '+%H:%M %b %d, %Y'")
-
 (defwindow bar
   :monitor 0
   :windowtype "dock"
@@ -77,3 +71,51 @@
                       :anchor "top center")
   :reserve (struts :side "top" :distance "4%")
   (bar))
+
+(defwidget audiobar []
+  (box :orientation "h"
+    (audio)))
+
+(defwidget audio []
+     (box :class "audio" :orientation "h" :space-evenly false :halign "end"
+    (button :onclick "notify-send hey ho"
+      {audio})))
+
+
+(defwindow audiobar
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "10px"
+                      :y "0%"
+                      :width "2%"
+                      :height "30px"
+                      :anchor "top right")
+  :reserve (struts :side "top" :distance "1%")
+  (audiobar))
+
+
+(defwidget audiowidgets []
+  (box :orientation "v"
+    (audiowidget)))
+
+(defwidget audiowidget []
+     (box :class "audiowidget" :orientation "v" :space-evenly false :halign "end"
+    (metric :label "󰕾"
+            :value speaker_volume
+            :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%")
+    (metric :label ""
+            :value mic_volume
+            :onchange "pactl set-source-volume 0 {}%")))
+
+
+(defwindow audiowidgets
+  :monitor 0
+  :windowtype "dock"
+  :geometry (geometry :x "100px"
+                      :y "0%"
+                      :width "100px"
+                      :height "100px"
+                      :anchor "top right")
+  :reserve (struts :side "top" :distance "1%")
+  (audiowidgets))
+
