@@ -1,4 +1,4 @@
-;; **
+;;
 ;; ** Widgets config for EWW
 ;; ** Created by : @adi1090x
 ;; **
@@ -13,7 +13,7 @@
 (defpoll DATE :interval "5s" `date +\"%A, %B %d\"`)
 
 ;; Weather vars
-(defpoll WEATHER :interval "1s" `scripts/weather.sh`)
+(defpoll WEATHER :interval "5m" `scripts/weather.sh`)
 ;; Music vars
 (defpoll SONG :interval "1s" `scripts/spotify/spotify-song.sh`)
 (defpoll ARTIST :interval "1s" `scripts/spotify/spotify-artist.sh`)
@@ -26,7 +26,9 @@
 ;; Battery vars
 (defpoll BATICON :interval "1m" `scripts/battery --icon`)
 (defpoll BATPERC :interval "1m" `scripts/battery --perc`)
-
+;; Screen 
+(defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
+(defpoll BRIGHTICON :interval "1s" `scripts/brightness.sh icon`)
 ;; Audio vars
 (defpoll VOLICON :interval "1s" `scripts/volume --icon`)
 (defpoll VOLUME :interval "1s" `scripts/volume --get`)
@@ -99,12 +101,12 @@
 
 				(button :onclick "scripts/volume --toggle"
 					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${VOLICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text VOLUME)))
-				(button :onclick "scripts/mictoggle.sh"
+						(box :style "background-image: url('${BRIGHTICON}');" :class "trayicon")
+							(label :class "infotext" :halign "start" :text "${BRIGHTNESS}%")))
+				(button :onclick "scripts/widget_apps --pow"
 					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${MICICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text MICROPHONE))))))
+						(box :style "background-image: url('${BATICON}');" :class "trayicon")
+							(label :class "infotext" :halign "start" :text BATPERC))))))
 
 
 ;; system
@@ -122,25 +124,10 @@
 
 ;; ** Windows *************************************************************************
 
-
-;; apps
-(defwindow apps
-           :monitor 0
-           :geometry (geometry :x "230px"
-                               :y "5px"
-                               :width "400px"
-                               :height "45px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(apps))
-
 ;; weather
 (defwindow weather
            :monitor 0
-           :geometry (geometry :x "660px"
+           :geometry (geometry :x "5px"
                                :y "5px"
                                :width "300px"
                                :height "45px"
@@ -154,7 +141,7 @@
 ;; music
 (defwindow music
            :monitor 0
-           :geometry (geometry :x "990px"
+           :geometry (geometry :x "310px"
                                :y "5px"
                                :width "400px"
                                :height "45px"
@@ -164,6 +151,26 @@
            :windowtype "dock"
            :wm-ignore false
 (music))
+
+
+;; apps
+(defwindow apps
+           :monitor 0
+           :geometry (geometry :x "760px"
+                               :y "5px"
+                               :width "400px"
+                               :height "45px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(apps))
+
+
+
+
+
 
 
 ;;audio
@@ -180,12 +187,14 @@
            :wm-ignore false
 (audio))
 
+
+
 ;;screen
 (defwindow screen
            :monitor 0
-           :geometry (geometry :x "4px"
+           :geometry (geometry :x "1200px"
                                :y "5px"
-                               :width "250px"
+                               :width "210px"
                                :height "45px"
                                :anchor "top left")
            :stacking "fg"
