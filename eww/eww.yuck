@@ -55,13 +55,13 @@
 (defwidget apps [] 
 		(box :class "dockbox"
 			(box :orientation "h" :spacing 15 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/widget_apps --tr")
-				(button :style "background-image: url('images/icons/apps/firefox.png');" :class "appicon" :onclick "scripts/widget_apps --ff")
-				(button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/widget_apps --fm")
-				(button :style "background-image: url('images/icons/apps/notes.png');" :class "appicon" :onclick "scripts/widget_apps --ge")
-				(button :style "background-image: url('images/icons/apps/discord.png');" :class "appicon" :onclick "scripts/widget_apps --dc")
-				(button :style "background-image: url('images/icons/apps/reddit.png');" :class "appicon" :onclick "scripts/widget_apps --rd")
-				(button :style "background-image: url('images/icons/apps/telegram.png');" :class "appicon" :onclick "scripts/widget_apps --tg"))))
+				(button :style "background-image: url('images/icons/apps/vlc.png');" :class "appicon" :onclick "scripts/apps --vlc")
+				(button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/apps --thunar")
+				(button :style "background-image: url('images/icons/apps/discord.png');" :class "appicon" :onclick "scripts/apps --discord")
+				(button :style "background-image: url('images/icons/apps/spotify.png');" :class "appicon" :onclick "scripts/apps --spotify")
+				(button :style "background-image: url('images/icons/apps/visual-studio-code.png');" :class "appicon" :onclick "scripts/apps --vscode")
+				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
+				(button :style "background-image: url('images/icons/apps/firefox.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
 
 ;; weather
 (defwidget weather [] 
@@ -131,9 +131,9 @@
 (defwindow apps
            :monitor 0
            :geometry (geometry :x "230px"
-                               :y "20px"
+                               :y "5px"
                                :width "400px"
-                               :height "60px"
+                               :height "45px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -145,9 +145,9 @@
 (defwindow weather
            :monitor 0
            :geometry (geometry :x "660px"
-                               :y "20px"
+                               :y "5px"
                                :width "300px"
-                               :height "60px"
+                               :height "40px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -159,7 +159,7 @@
 (defwindow music
            :monitor 0
            :geometry (geometry :x "990px"
-                               :y "10px"
+                               :y "5px"
                                :width "400px"
                                :height "30px"
                                :anchor "top left")
