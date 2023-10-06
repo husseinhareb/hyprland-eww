@@ -13,9 +13,7 @@
 (defpoll DATE :interval "5s" `date +\"%A, %B %d\"`)
 
 ;; Weather vars
-(defpoll ICON :interval "15m" `scripts/weather_info --icon`)
-(defpoll TEMP :interval "15m" `scripts/weather_info --temp`)
-(defpoll HEX :interval "15m" `scripts/weather_info --hex`)
+(defpoll WEATHER :interval "1s" `scripts/weather.sh`)
 ;; Music vars
 (defpoll SONG :interval "1s" `scripts/spotify/spotify-song.sh`)
 (defpoll ARTIST :interval "1s" `scripts/spotify/spotify-artist.sh`)
@@ -32,7 +30,8 @@
 ;; Volume vars
 (defpoll VOLICON :interval "1s" `scripts/volume --icon`)
 (defpoll VOLUME :interval "1s" `scripts/volume --get`)
-
+(defpoll MICICON :interval "1s" `scripts/micicon.sh)
+(defpoll MICROPHONE :interval "1s" `scripts/mic.sh`)
 ;; Network
 (defpoll WIFIICON :interval "10s" `scripts/check-network --icon`)
 (defpoll NETSTAT :interval "10s" `scripts/check-network --stat`)
@@ -70,8 +69,7 @@
 				(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
 				(label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE))
 			(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "weathericon" :style "color: ${HEX};" :text ICON)
-				(label :class "weathertemp" :text TEMP))))
+				(label :class "weathertemp" :text WEATHER))))
 
 ;; music
 (defwidget music [] 
@@ -85,6 +83,22 @@
 				(button :style "background-image: url('images/icons/music/previous-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-previous.sh")
 				(button :style "background-image: url('${STATUS}');" :class "playbutton" :onclick "scripts/spotify/spotify-pause.sh")
 				(button :style "background-image: url('images/icons/music/next-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-next.sh"))))
+
+
+;; audio
+(defwidget audio [] 
+		(box :class "dockbox"
+			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+
+				(button :onclick "scripts/volume --toggle"
+					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+						(box :style "background-image: url('${VOLICON}');" :class "trayicon")
+							(label :class "infotext" :halign "start" :text VOLUME)))
+							(button :onclick "scripts/volume --toggle"
+					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+						(box :style "background-image: url('${VOLICON}');" :class "trayicon")
+							(label :class "infotext" :halign "start" :text VOLUME))))))
+
 
 ;; system
 (defwidget system [] 
@@ -117,9 +131,9 @@
 (defwindow search
            :monitor 0
            :geometry (geometry :x "20px"
-                               :y "20px"
+                               :y "5px"
                                :width "180px"
-                               :height "60px"
+                               :height "45px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -147,7 +161,7 @@
            :geometry (geometry :x "660px"
                                :y "5px"
                                :width "300px"
-                               :height "40px"
+                               :height "45px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -161,7 +175,7 @@
            :geometry (geometry :x "990px"
                                :y "5px"
                                :width "400px"
-                               :height "30px"
+                               :height "45px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -169,13 +183,28 @@
            :wm-ignore false
 (music))
 
+
+;;audio
+(defwindow audio
+			:monitor 0
+			:geometry (geometry :x "1420px"
+								:y "60px"
+								:width "200px"
+								:height "45px"
+								:anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(audio))
+
 ;; system
 (defwindow system
            :monitor 0
            :geometry (geometry :x "1420px"
-                               :y "20px"
+                               :y "5px"
                                :width "480px"
-                               :height "60px"
+                               :height "45px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
