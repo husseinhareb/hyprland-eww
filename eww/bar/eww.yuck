@@ -24,7 +24,7 @@
 (defpoll MAILS :interval "5m" `scripts/mails`)
 
 ;; Battery vars
-(defpoll BATICON :interval "qm" `scripts/battery --icon`)
+(defpoll BATICON :interval "1s" `scripts/battery --icon`)
 (defpoll BATPERC :interval "10s" `scripts/battery --perc`)
 ;; Screen 
 (defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
@@ -46,6 +46,15 @@
 ;; ** Widgets *************************************************************************
 
 
+;; weather
+(defwidget weather [] 
+		(box :class "dockbox"
+			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
+				(label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE))
+			(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "weathertemp" :text WEATHER))))
+
 ;; apps
 (defwidget apps [] 
 		(box :class "dockbox"
@@ -57,15 +66,6 @@
 				(button :style "background-image: url('images/icons/apps/visual-studio-code.png');" :class "appicon" :onclick "scripts/apps --vscode")
 				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
 				(button :style "background-image: url('images/icons/apps/firefox.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
-
-;; weather
-(defwidget weather [] 
-		(box :class "dockbox"
-			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
-				(label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE))
-			(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "weathertemp" :text WEATHER))))
 
 ;; music
 (defwidget music [] 
