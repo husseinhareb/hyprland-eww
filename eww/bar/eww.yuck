@@ -24,8 +24,8 @@
 (defpoll MAILS :interval "5m" `scripts/mails`)
 
 ;; Battery vars
-(defpoll BATICON :interval "1s" `scripts/battery --icon`)
-(defpoll BATPERC :interval "10s" `scripts/battery --perc`)
+(defpoll BATICON :interval "1s" `scripts/battery.sh --icon`)
+(defpoll BATPERC :interval "10s" `scripts/battery.sh --perc`)
 ;; Screen 
 (defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
 (defpoll BRIGHTICON :interval "1s" `scripts/brightness.sh icon`)
