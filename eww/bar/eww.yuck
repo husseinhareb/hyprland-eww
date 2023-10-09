@@ -128,8 +128,9 @@
 ;; more
 (defwidget more [] 
 		(box :class "dockbox"
-			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-								(box :style "background-image: url('${OPTIONS}');" :class "face"))))
+        	(button :onclick "/home/shtam/.config/eww/dashboard/launch_dashboard"
+			    (box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+								(box :style "background-image: url('${OPTIONS}');" :class "face")))))
 
 ;; ** Windows *************************************************************************
 
