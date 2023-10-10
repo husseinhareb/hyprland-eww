@@ -110,15 +110,17 @@
 (defwidget github [] 
 	(box :class "github" :vexpand "false" :hexpand "false" 
 		(button :class "iconweb" :onclick "scripts/open_links --gh" "")))
-.reddit {
-	background-color: #E46231;
-	border-radius: 16px;
-}
+;; reddit
+(defwidget reddit [] 
+	(box :class "reddit" :vexpand "false" :hexpand "false" 
+		(button :class "iconweb" :onclick "scripts/open_links --rd" "樓")))
 
-.youtube {
-	background-color: #DF584E;
-	border-radius: 16px;
-}
+
+;; youtube
+(defwidget youtube [] 
+	(box :class "youtube" :vexpand "false" :hexpand "false" 
+		(button :class "iconweb" :onclick "scripts/open_links --yt" "")))
+
 ;; screen
 (defwidget screen [] 
 		(box :class "dockbox"
@@ -226,7 +228,7 @@
 (github))
 
 ;; reddit
-(defwindow github
+(defwindow reddit
            :monitor 0
            :geometry (geometry :x "1200px"
                                :y "540px"
@@ -240,7 +242,7 @@
 (reddit))
 
 ;; youtube
-(defwindow github
+(defwindow youtube
            :monitor 0
            :geometry (geometry :x "1200px"
                                :y "640px"
@@ -258,8 +260,8 @@
            :monitor 0
            :geometry (geometry :x "960px"
                                :y "540px"
-                               :width "400px"
-                               :height "400px"
+                               :width "100px"
+                               :height "100px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
