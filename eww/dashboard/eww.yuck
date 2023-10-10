@@ -110,7 +110,15 @@
 (defwidget github [] 
 	(box :class "github" :vexpand "false" :hexpand "false" 
 		(button :class "iconweb" :onclick "scripts/open_links --gh" "")))
+.reddit {
+	background-color: #E46231;
+	border-radius: 16px;
+}
 
+.youtube {
+	background-color: #DF584E;
+	border-radius: 16px;
+}
 ;; screen
 (defwidget screen [] 
 		(box :class "dockbox"
@@ -206,16 +214,44 @@
 ;; github
 (defwindow github
            :monitor 0
-           :geometry (geometry :x "960px"
-                               :y "540px"
-                               :width "700px"
-                               :height "700px"
+           :geometry (geometry :x "1200px"
+                               :y "440px"
+                               :width "100px"
+                               :height "100px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
            :windowtype "dock"
            :wm-ignore false
 (github))
+
+;; reddit
+(defwindow github
+           :monitor 0
+           :geometry (geometry :x "1200px"
+                               :y "540px"
+                               :width "100px"
+                               :height "100px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(reddit))
+
+;; youtube
+(defwindow github
+           :monitor 0
+           :geometry (geometry :x "1200px"
+                               :y "640px"
+                               :width "100px"
+                               :height "100px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(youtube))
 
 ;; apps
 (defwindow apps
