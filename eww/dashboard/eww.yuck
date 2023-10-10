@@ -19,7 +19,10 @@
 (defpoll YEAR :interval "1s" `date +\"%d\"`)
 
 ;; Weather vars
-(defpoll WEATHER :interval "5m" `scripts/weather.sh`)
+(defpoll WEATHERICON :interval "1s" `scripts/weather.sh icon`)
+(defpoll WEATHERTEMP :interval "1s" `scripts/weather.sh temp`)
+
+
 ;; Music vars
 (defpoll SONG :interval "1s" `scripts/spotify/spotify-song.sh`)
 (defpoll ARTIST :interval "1s" `scripts/spotify/spotify-artist.sh`)
@@ -70,6 +73,14 @@
                 (label :class "timeseconds" :halign "start" :wrap "true" :limit-width 25 :text YEAR))))
 
 
+
+;; weather
+(defwidget weather [] 
+		(box :class "dockbox"
+			(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "weathericon" :text WEATHERICON)
+                (label :class "weathertemp" :text WEATHERTEMP))))
+
 ;; apps
 (defwidget apps [] 
 		(box :class "dockbox"
@@ -95,20 +106,10 @@
 				(button :style "background-image: url('${STATUS}');" :class "playbutton" :onclick "scripts/spotify/spotify-pause.sh")
 				(button :style "background-image: url('images/icons/music/next-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-next.sh"))))
 
-
-;; audio
-(defwidget audio [] 
-		(box :class "dockbox"
-			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-
-				(button :onclick "scripts/volume --toggle"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${VOLICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text VOLUME)))
-				(button :onclick "scripts/mictoggle.sh"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${MICICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text MICROPHONE))))))
+;; github
+(defwidget github [] 
+	(box :class "github" :vexpand "false" :hexpand "false" 
+		(button :class "iconweb" :onclick "scripts/open_links --gh" "")))
 
 ;; screen
 (defwidget screen [] 
@@ -162,7 +163,7 @@
 ;; date
 (defwindow date
            :monitor 0
-           :geometry (geometry :x "200px"
+           :geometry (geometry :x "400px"
                                :y "540px"
                                :width "150px"
                                :height "300px"
@@ -173,6 +174,19 @@
            :wm-ignore false
 (date))
 
+;; weather
+(defwindow weather
+           :monitor 0
+           :geometry (geometry :x "700px"
+                               :y "540px"
+                               :width "150px"
+                               :height "300px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(weather))
 
 ;; music
 (defwindow music
@@ -189,10 +203,24 @@
 (music))
 
 
+;; github
+(defwindow github
+           :monitor 0
+           :geometry (geometry :x "960px"
+                               :y "540px"
+                               :width "700px"
+                               :height "700px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(github))
+
 ;; apps
 (defwindow apps
            :monitor 0
-           :geometry (geometry :x "760px"
+           :geometry (geometry :x "960px"
                                :y "540px"
                                :width "400px"
                                :height "400px"
@@ -203,41 +231,6 @@
            :wm-ignore false
 (apps))
 
-
-
-
-
-
-
-;;audio
-(defwindow audio
-			:monitor 0
-			:geometry (geometry :x "1246px"
-								:y "500px"
-								:width "170px"
-								:height "45px"
-								:anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(audio))
-
-
-
-;;screen
-(defwindow screen
-           :monitor 0
-           :geometry (geometry :x "1421px"
-                               :y "500px"
-                               :width "210px"
-                               :height "45px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(screen))
 
 ;; profile
 (defwindow profile
