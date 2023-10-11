@@ -1,8 +1,3 @@
-;;
-;; ** Widgets config for EWW
-;; ** Created by : @adi1090x
-;; **
-
 ;; ** Variables ***********************************************************************
 
 ;; Workspace vars
@@ -91,7 +86,8 @@
 				(button :style "background-image: url('images/icons/apps/obsidian.png');" :class "appicon" :onclick "scripts/apps --spotify")
 				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --vscode")
 				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
-				(button :style "background-image: url('images/icons/apps/firefox.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
+				(button :style "background-image: url('images/icons/apps/vs-code.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
+                (button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
 
 ;; github
 (defwidget github [] 
@@ -281,19 +277,3 @@
            :windowtype "dock"
            :wm-ignore false
 (profile))
-
-
-;; sidestuff
-(defwindow sidestuff
-           :monitor 0
-           :geometry (geometry :x "1000px"
-                               :y "70px"
-                               :width "200px"
-                               :height "300px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(sidestuff))
-
