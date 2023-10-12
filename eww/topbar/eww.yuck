@@ -1,12 +1,4 @@
-;;
-;; ** Widgets config for EWW
-;; ** Created by : @adi1090x
-;; **
-
 ;; ** Variables ***********************************************************************
-
-;; Workspace vars
-(defpoll WMS :interval "1s" `wmctrl -d | grep '*' | cut -d ' ' -f13`)
 
 ;; Time vars
 (defpoll TIME :interval "5s" `date +\"%I:%M %p\"`)
@@ -14,26 +6,28 @@
 
 ;; Weather vars
 (defpoll WEATHER :interval "5m" `scripts/weather.sh`)
+
 ;; Music vars
 (defpoll SONG :interval "1s" `scripts/spotify/spotify-song.sh`)
 (defpoll ARTIST :interval "1s" `scripts/spotify/spotify-artist.sh`)
 (defpoll COVER :interval "1s" `scripts/spotify/spotify-artwork.sh`)
 (defpoll STATUS :interval "1s" `scripts/spotify/spotify-status.sh`)
 
-;; Mail vars
-(defpoll MAILS :interval "5m" `scripts/mails`)
 
 ;; Battery vars
 (defpoll BATICON :interval "1s" `scripts/battery.sh --icon`)
 (defpoll BATPERC :interval "10s" `scripts/battery.sh --perc`)
+
 ;; Screen 
 (defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
 (defpoll BRIGHTICON :interval "1s" `scripts/brightness.sh icon`)
+
 ;; Audio vars
 (defpoll VOLICON :interval "1s" `scripts/volume --icon`)
 (defpoll VOLUME :interval "1s" `scripts/volume --get`)
 (defpoll MICROPHONE :interval "1s" "scripts/mic.sh")
 (defpoll MICICON :interval "1s" "scripts/micicon.sh")
+
 ;; Network
 (defpoll WIFIICON :interval "10s" `scripts/check-network --icon`)
 (defpoll NETSTAT :interval "10s" `scripts/check-network --stat`)
