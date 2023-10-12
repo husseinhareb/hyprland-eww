@@ -1,11 +1,22 @@
 ;; ** Variables ***********************************************************************
 
+;; Workspace vars
+(defpoll WMS :interval "1s" `wmctrl -d | grep '*' | cut -d ' ' -f13`)
+
 ;; Time vars
-(defpoll TIME :interval "5s" `date +\"%I:%M %p\"`)
-(defpoll DATE :interval "5s" `date +\"%A, %B %d\"`)
+(defpoll TIMEHOUR :interval "\1s" `date +\"%I\"`)
+(defpoll TIMEMINUTES :interval "1s" `date +\"%M\"`)
+(defpoll TIMESECONDS :interval "1s" `date +\"%S\"`)
+
+;; Date vars
+(defpoll DAY :interval "\1s" `date +\"%A\"`)
+(defpoll MONTH :interval "1s" `date +\"%B\"`)
+(defpoll YEAR :interval "1s" `date +\"%d\"`)
 
 ;; Weather vars
-(defpoll WEATHER :interval "5m" `scripts/weather.sh`)
+(defpoll WEATHERICON :interval "1s" `scripts/weather.sh icon`)
+(defpoll WEATHERTEMP :interval "1s" `scripts/weather.sh temp`)
+
 
 ;; Music vars
 (defpoll SONG :interval "1s" `scripts/spotify/spotify-song.sh`)
@@ -13,21 +24,20 @@
 (defpoll COVER :interval "1s" `scripts/spotify/spotify-artwork.sh`)
 (defpoll STATUS :interval "1s" `scripts/spotify/spotify-status.sh`)
 
+;; Mail vars
+(defpoll MAILS :interval "5m" `scripts/mails`)
 
 ;; Battery vars
 (defpoll BATICON :interval "1s" `scripts/battery.sh --icon`)
 (defpoll BATPERC :interval "10s" `scripts/battery.sh --perc`)
-
 ;; Screen 
 (defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
 (defpoll BRIGHTICON :interval "1s" `scripts/brightness.sh icon`)
-
 ;; Audio vars
 (defpoll VOLICON :interval "1s" `scripts/volume --icon`)
 (defpoll VOLUME :interval "1s" `scripts/volume --get`)
 (defpoll MICROPHONE :interval "1s" "scripts/mic.sh")
 (defpoll MICICON :interval "1s" "scripts/micicon.sh")
-
 ;; Network
 (defpoll WIFIICON :interval "10s" `scripts/check-network --icon`)
 (defpoll NETSTAT :interval "10s" `scripts/check-network --stat`)
@@ -40,54 +50,59 @@
 ;; ** Widgets *************************************************************************
 
 
+;; time
+(defwidget time [] 
+		(box :class "dockbox"
+			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "timehour" :halign "start" :wrap "true" :limit-width 25 :text TIMEHOUR)
+                (label :class "timeminutes" :halign "start" :wrap "true" :limit-width 25 :text TIMEMINUTES)
+                (label :class "timeseconds" :halign "start" :wrap "true" :limit-width 25 :text TIMESECONDS))))
+
+
+;; date
+(defwidget date [] 
+		(box :class "dockbox"
+			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "timehour" :halign "start" :wrap "true" :limit-width 25 :text DAY)
+                (label :class "timeminutes" :halign "start" :wrap "true" :limit-width 25 :text MONTH)
+                (label :class "timeseconds" :halign "start" :wrap "true" :limit-width 25 :text YEAR))))
+
+
+
 ;; weather
 (defwidget weather [] 
 		(box :class "dockbox"
-			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
-				(label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE))
 			(box :class "weatherbox" :orientation "h" :spacing 0 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(label :class "weathertemp" :text WEATHER))))
+				(label :class "weathericon" :text WEATHERICON)
+                (label :class "weathertemp" :text WEATHERTEMP))))
 
 ;; apps
 (defwidget apps [] 
 		(box :class "dockbox"
 			(box :orientation "h" :spacing 15 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(button :style "background-image: url('images/icons/apps/vlc.png');" :class "appicon" :onclick "scripts/apps --vlc")
-				(button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/apps --thunar")
-				(button :style "background-image: url('images/icons/apps/discord.png');" :class "appicon" :onclick "scripts/apps --discord")
-				(button :style "background-image: url('images/icons/apps/spotify.png');" :class "appicon" :onclick "scripts/apps --spotify")
-				(button :style "background-image: url('images/icons/apps/visual-studio-code.png');" :class "appicon" :onclick "scripts/apps --vscode")
+				(button :style "background-image: url('images/icons/apps/android-studio.png');" :class "appicon" :onclick "scripts/apps --vlc")
+				(button :style "background-image: url('images/icons/apps/notion.png');" :class "appicon" :onclick "scripts/apps --thunar")
+				(button :style "background-image: url('images/icons/apps/obs.png');" :class "appicon" :onclick "scripts/apps --discord")
+				(button :style "background-image: url('images/icons/apps/obsidian.png');" :class "appicon" :onclick "scripts/apps --spotify")
+				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --vscode")
 				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
-				(button :style "background-image: url('images/icons/apps/firefox.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
+				(button :style "background-image: url('images/icons/apps/vs-code.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
+                (button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
 
-;; music
-(defwidget music [] 
-		(box :class "dockbox"
-			(box :orientation "h" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
-				(box :class "musicbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false"
-					(label :class "song" :halign "start" :wrap "false" :limit-width 30 :text SONG)
-					(label :class "artist" :halign "start" :wrap "false" :limit-width 20 :text ARTIST)))
-			(box :class "musicbuttons" :orientation "h" :spacing 10 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(button :style "background-image: url('images/icons/music/previous-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-previous.sh")
-				(button :style "background-image: url('${STATUS}');" :class "playbutton" :onclick "scripts/spotify/spotify-pause.sh")
-				(button :style "background-image: url('images/icons/music/next-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-next.sh"))))
+;; github
+(defwidget github [] 
+	(box :class "github" :vexpand "false" :hexpand "false" 
+		(button :class "iconweb" :onclick "scripts/open_links --gh" "")))
+;; reddit
+(defwidget reddit [] 
+	(box :class "reddit" :vexpand "false" :hexpand "false" 
+		(button :class "iconweb" :onclick "scripts/open_links --rd" "樓")))
 
 
-;; audio
-(defwidget audio [] 
-		(box :class "dockbox"
-			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-
-				(button :onclick "scripts/volume --toggle"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${VOLICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text VOLUME)))
-				(button :onclick "scripts/mictoggle.sh"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${MICICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text MICROPHONE))))))
+;; youtube
+(defwidget youtube [] 
+	(box :class "youtube" :vexpand "false" :hexpand "false" 
+		(button :class "iconweb" :onclick "scripts/open_links --yt" "")))
 
 ;; screen
 (defwidget screen [] 
@@ -102,20 +117,27 @@
 					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 						(box :style "background-image: url('${BATICON}');" :class "trayicon")
 							(label :class "infotext" :halign "start" :text BATPERC))))))
+;; music
+(defwidget music [] 
+		(box :class "dockbox"
+			(box :orientation "h" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
+				(box :class "musicbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false"
+					(label :class "song" :halign "start" :wrap "false" :limit-width 30 :text SONG)
+					(label :class "artist" :halign "start" :wrap "false" :limit-width 20 :text ARTIST)))
+			(box :class "musicbuttons" :orientation "h" :spacing 10 :valign "center" :halign "end" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(button :style "background-image: url('images/icons/music/previous-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-previous.sh")
+				(button :style "background-image: url('${STATUS}');" :class "playbutton" :onclick "scripts/spotify/spotify-pause.sh")
+				(button :style "background-image: url('images/icons/music/next-button.png');" :class "trackbutton" :onclick "scripts/spotify/spotify-next.sh"))))
 
 
 ;; profile
 (defwidget profile [] 
 		(box :class "dockbox"
 			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(button :onclick "scripts/widget_apps --nm"
 					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${WIFIICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text NETSTAT)))
-				(button :onclick "sidedar/toggle_sidebar"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${IMAGE}');" :class "face")
-							(label :class "infotext" :halign "start" :text USER))))))
+						(box :style "background-image: url('${IMAGE}');" :class "profileimage")
+							(label :class "username" :halign "start" :text USER)))))
 
 
 
@@ -128,13 +150,42 @@
 
 ;; ** Windows *************************************************************************
 
+;; time
+(defwindow time
+           :monitor 0
+           :geometry (geometry :x "200px"
+                               :y "540px"
+                               :width "150px"
+                               :height "300px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(time))
+
+
+;; date
+(defwindow date
+           :monitor 0
+           :geometry (geometry :x "400px"
+                               :y "540px"
+                               :width "150px"
+                               :height "300px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(date))
+
 ;; weather
 (defwindow weather
            :monitor 0
-           :geometry (geometry :x "5px"
-                               :y "5px"
-                               :width "300px"
-                               :height "45px"
+           :geometry (geometry :x "760px"
+                               :y "540px"
+                               :width "150px"
+                               :height "300px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -145,10 +196,10 @@
 ;; music
 (defwindow music
            :monitor 0
-           :geometry (geometry :x "310px"
-                               :y "5px"
-                               :width "400px"
-                               :height "45px"
+           :geometry (geometry :x "450px"
+                               :y "200px"
+                               :width "200px"
+                               :height "300px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -157,13 +208,54 @@
 (music))
 
 
+;; github
+(defwindow github
+           :monitor 0
+           :geometry (geometry :x "1000px"
+                               :y "200px"
+                               :width "200px"
+                               :height "226px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(github))
+
+;; reddit
+(defwindow reddit
+           :monitor 0
+           :geometry (geometry :x "1000px"
+                               :y "440px"
+                               :width "200px"
+                               :height "226px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(reddit))
+
+;; youtube
+(defwindow youtube
+           :geometry (geometry :x "1000px"
+                               :y "660px"
+                               :width "200px"
+                               :height "226px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(youtube))
+
 ;; apps
 (defwindow apps
            :monitor 0
-           :geometry (geometry :x "760px"
-                               :y "5px"
-                               :width "400px"
-                               :height "45px"
+           :geometry (geometry :x "960px"
+                               :y "540px"
+                               :width "100px"
+                               :height "100px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -172,65 +264,16 @@
 (apps))
 
 
-
-
-
-
-
-;;audio
-(defwindow audio
-			:monitor 0
-			:geometry (geometry :x "1246px"
-								:y "5px"
-								:width "170px"
-								:height "45px"
-								:anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(audio))
-
-
-
-;;screen
-(defwindow screen
-           :monitor 0
-           :geometry (geometry :x "1421px"
-                               :y "5px"
-                               :width "210px"
-                               :height "45px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(screen))
-
 ;; profile
 (defwindow profile
            :monitor 0
-           :geometry (geometry :x "1636px"
-                               :y "5px"
-                               :width "230px"
-                               :height "45px"
+           :geometry (geometry :x "200px"
+                               :y "200px"
+                               :width "200px"
+                               :height "300px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
            :windowtype "dock"
            :wm-ignore false
 (profile))
-
-;;more
-(defwindow more
-           :monitor 0
-           :geometry (geometry :x "1871px"
-                               :y "5px"
-                               :width "44px"
-                               :height "45px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(more))
