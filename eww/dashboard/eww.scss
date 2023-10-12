@@ -7,7 +7,7 @@
 }
 
 /** Bar ***********************************/
-.dockbox {
+.wid_get {
 	background-color: #9484ac;
 	border: 1px solid #161616;
 	border-radius: 12px;
@@ -23,9 +23,10 @@
 
 .appicon {
     background-repeat: no-repeat;
-	background-size: 40px;
-	min-height: 40px;
-	min-width: 40px;
+	background-size: 64px;
+	min-height: 64px;
+	min-width: 64px;
+	margin: 10px 10px 0px 10px;;
 }
 
 .workspace {
@@ -44,26 +45,19 @@
 	margin : 0px 0px 0px 15px;
 }
 
-.timehour {
-	font-size : 60px;
+.time {
+	font-size : 14px;
 	font-weight : bold;
-    color: rgb(216, 40, 87);
 }
-.timeminutes {
-	font-size : 40px;
+
+.date {
+	font-size : 10px;
 	font-weight : bold;
-    margin: 10px 0px 0px 40px;
-    color: #c62c55;
-}
-.timeseconds {
-	font-size : 30px;
-    margin: 10px 0px 0px 70px;
-    color: #C04364;
 }
 
 /** Weather ********************************************/
 .weatherbox {
-	margin : 0px 0px 0px -120px;
+	margin : 0px 0px 0px -90px;
 }
 
 .weathericon {
@@ -82,9 +76,9 @@
 /** Music *************************************************/
 .album_art {
     background-repeat: no-repeat;
-	background-size: 100px;
-	min-height: 100px;
-	min-width: 100px;
+	background-size: 35px;
+	min-height: 35px;
+	min-width: 35px;
 	margin: 4px;
 	border-radius: 6px;
 }
@@ -94,7 +88,7 @@
 .song {
 	font-size : 12px;
 	font-weight : bold;
-	margin: 5px;
+	margin: 0px;
 }
 
 .artist {
@@ -141,17 +135,20 @@
 	margin: 8px 0px 0px 0px;
 }
 
-.username {
+.infotext {
+	background-color: #DCD7CD;
+	border: 0px solid #161616;
+	border-radius: 16px;
 	font-size : 14px;
 	padding: 0px 5px 0px 5px;
-	margin: 100px 0px 0px 0px;
+	margin: 10px 0px 10px 0px;
 	font-weight : bold;
 }
 
-.profileimage {
-	background-size: 150px;
-	min-height: 150px;
-	min-width: 150px;
+.face {
+	background-size: 24px;
+	min-height: 24px;
+	min-width: 24px;
 	margin: 8px 0px 8px 0px;
 	border-radius: 100%;
 }
