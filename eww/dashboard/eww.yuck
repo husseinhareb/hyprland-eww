@@ -42,7 +42,7 @@
 
 ;; weather
 (defwidget weather [] 
-		(box :class "dockbox"
+		(box :class "wid_get"
 			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
 				(label :class "time" :halign "start" :wrap "true" :limit-width 25 :text TIME)
 				(label :class "date" :halign "start" :wrap "true" :limit-width 25 :text DATE))
@@ -51,7 +51,7 @@
 
 ;; apps
 (defwidget apps [] 
-	(box :class "genwin" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false" 
+	(box :class "wid_get" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false" 
 		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false" 
 				(button :style "background-image: url('images/icons/apps/notion.png');" :class "appicon" :onclick "scripts/apps --vlc")
 				(button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/apps --thunar")
@@ -59,13 +59,15 @@
 		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
 				(button :style "background-image: url('images/icons/apps/vs-code.png');" :class "appicon" :onclick "scripts/apps --spotify")
 				(button :style "background-image: url('images/icons/apps/android-studio.png');" :class "appicon" :onclick "scripts/apps --vscode")
-				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
-		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"				
+				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty"))
+		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --firefox")
+				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --firefox")
 				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
 
 ;; music
 (defwidget music [] 
-		(box :class "dockbox"
+		(box :class "wid_get"
 			(box :orientation "h" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
 				(box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
 				(box :class "musicbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false"
@@ -79,7 +81,7 @@
 
 ;; audio
 (defwidget audio [] 
-		(box :class "dockbox"
+		(box :class "wid_get"
 			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 
 				(button :onclick "scripts/volume --toggle"
@@ -93,7 +95,7 @@
 
 ;; screen
 (defwidget screen [] 
-		(box :class "dockbox"
+		(box :class "wid_get"
 			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 
 				(button :onclick "scripts/volume --toggle"
@@ -108,7 +110,7 @@
 
 ;; profile
 (defwidget profile [] 
-		(box :class "dockbox"
+		(box :class "wid_get"
 			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 				(button :onclick "scripts/widget_apps --nm"
 					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
@@ -123,7 +125,7 @@
 
 ;; more
 (defwidget more [] 
-		(box :class "dockbox"
+		(box :class "wid_get"
         	(button :onclick "/home/shtam/.config/eww/dashboard/launch_bar.sh"
 			    (box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 								(box :style "background-image: url('${OPTIONS}');" :class "face")))))
