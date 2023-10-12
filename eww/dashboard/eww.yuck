@@ -51,14 +51,16 @@
 
 ;; apps
 (defwidget apps [] 
-		(box :class "dockbox"
-			(box :orientation "h" :spacing 15 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
+	(box :class "genwin" :orientation "v" :space-evenly "false" :vexpand "false" :hexpand "false" 
+		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false" 
 				(button :style "background-image: url('images/icons/apps/notion.png');" :class "appicon" :onclick "scripts/apps --vlc")
 				(button :style "background-image: url('images/icons/apps/files.png');" :class "appicon" :onclick "scripts/apps --thunar")
-				(button :style "background-image: url('images/icons/apps/obsidian.png');" :class "appicon" :onclick "scripts/apps --discord")
+				(button :style "background-image: url('images/icons/apps/obsidian.png');" :class "appicon" :onclick "scripts/apps --discord"))
+		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
 				(button :style "background-image: url('images/icons/apps/vs-code.png');" :class "appicon" :onclick "scripts/apps --spotify")
 				(button :style "background-image: url('images/icons/apps/android-studio.png');" :class "appicon" :onclick "scripts/apps --vscode")
 				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
+		(box :class "appbox" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"				
 				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
 
 ;; music
