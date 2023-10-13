@@ -12,13 +12,15 @@
 
 
 ;;Profile vars
-(defpoll NAME :interval "1s" `whoami`)
+(defpoll NAME :interval "5m" `whoami`)
 (defvar IMAGE "images/profile.jpeg")
+(defpoll UPTIME :interval "1s" `uptime -p | sed -E 's/up //; s/day[s]*,? //; s/hour[s]*,?/h /; s/minute[s]*,?/min/; s/second[s]*,?/sec/'`)
+
 
 ;; Weather vars
 (defpoll WEATHER :interval "5m" `scripts/weather.sh`)
 
-;; Music vars
+;; Spotify vars
 (defpoll SONG :interval "1s" `scripts/spotify/spotify-song.sh`)
 (defpoll ARTIST :interval "1s" `scripts/spotify/spotify-artist.sh`)
 (defpoll COVER :interval "1s" `scripts/spotify/spotify-artwork.sh`)
@@ -65,12 +67,21 @@
 				(label :class "day" :halign "start" :wrap "true" :limit-width 25 :text DAY)
                 (label :class "month" :halign "start" :wrap "true" :limit-width 25 :text MONTH))))
 
+;; weather
+(defwidget weather [] 
+		(box :class "wid_get"
+			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "dayname" :halign "start" :wrap "true" :limit-width 25 :text DAYNAME)
+				(label :class "day" :halign "start" :wrap "true" :limit-width 25 :text DAY)
+                (label :class "month" :halign "start" :wrap "true" :limit-width 25 :text MONTH))))
 
 ;; profile
 (defwidget profile [] 
 	(box :class "wid_get" :orientation "v" :spacing 35 :space-evenly "false" :vexpand "false" :hexpand "false"
 		(box :style "background-image: url('${IMAGE}');" :class "profileimage" :halign "center")
-		(label :class "username" :halign "center" :wrap "true" :limit-width 25 :text NAME)))
+		(label :class "username" :halign "center" :wrap "true" :limit-width 25 :text NAME)
+			(box :orientation "v" :valign "center" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "false" 
+        		(label :class "uptime" :halign "start" :wrap "true" :limit-width 25 :text "󱎫 ${UPTIME}"))))
 
 ;; apps
 (defwidget apps [] 
@@ -90,8 +101,8 @@
 
 
 
-;; Music
-(defwidget music [] 
+;; spotify
+(defwidget spotify [] 
 	(box :class "wid_get" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false" 
 		(box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
 		(box :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
@@ -141,13 +152,41 @@
 
 ;; ** Windows *************************************************************************
 
+;; profile
+(defwindow profile
+           :monitor 0
+           :geometry (geometry :x "400px"
+                               :y "200px"
+                               :width "220px"
+                               :height "600px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(profile))
+
+;; spotify
+(defwindow spotify
+           :monitor 0
+           :geometry (geometry :x "660px"
+                               :y "200px"
+                               :width "600px"
+                               :height "200px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(spotify))
+
 ;; time
 (defwindow time
            :monitor 0
-           :geometry (geometry :x "500px"
-                               :y "600px"
+           :geometry (geometry :x "660px"
+                               :y "520px"
                                :width "120px"
-                               :height "240px"
+                               :height "280px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -156,43 +195,28 @@
 (time))
 
 
-
-;; date
-(defwindow date
+;; weather
+(defwindow weather
            :monitor 0
-           :geometry (geometry :x "100px"
-                               :y "600px"
+           :geometry (geometry :x "700px"
+                               :y "520px"
                                :width "120px"
-                               :height "240px"
+                               :height "280px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
            :windowtype "dock"
            :wm-ignore false
-(date))
-
-;; music
-(defwindow music
-           :monitor 0
-           :geometry (geometry :x "300px"
-                               :y "300px"
-                               :width "600px"
-                               :height "200px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(music))
+(weather))
 
 
 ;; apps
 (defwindow apps
            :monitor 0
-           :geometry (geometry :x "900px"
-                               :y "600px"
-                               :width "230px"
-                               :height "240px"
+           :geometry (geometry :x "1000px"
+                               :y "520px"
+                               :width "280px"
+                               :height "280px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -206,49 +230,11 @@
 
 
 
-;;audio
-(defwindow audio
-			:monitor 0
-			:geometry (geometry :x "1246px"
-								:y "500px"
-								:width "170px"
-								:height "45px"
-								:anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(audio))
 
 
 
-;;screen
-(defwindow screen
-           :monitor 0
-           :geometry (geometry :x "1421px"
-                               :y "500px"
-                               :width "210px"
-                               :height "45px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(screen))
 
-;; profile
-(defwindow profile
-           :monitor 0
-           :geometry (geometry :x "1636px"
-                               :y "500px"
-                               :width "200px"
-                               :height "500px"
-                               :anchor "top left")
-           :stacking "fg"
-           :reserve (struts :distance "80px" :side "top")
-           :windowtype "dock"
-           :wm-ignore false
-(profile))
+
 
 ;;more
 (defwindow more
