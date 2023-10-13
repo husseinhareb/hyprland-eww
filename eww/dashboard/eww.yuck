@@ -13,7 +13,7 @@
 
 ;;Profile vars
 (defpoll NAME :interval "1s" `whoami`)
-(defpoll IMAGE :interval "1s" `images/profile.jpeg`)
+(defvar IMAGE "images/profile.jpeg")
 
 ;; Weather vars
 (defpoll WEATHER :interval "5m" `scripts/weather.sh`)
@@ -44,7 +44,6 @@
 (defpoll NETSTAT :interval "10s" `scripts/check-network --stat`)
 
 ;; User
-(defvar IMAGE "images/profile.jpeg")
 (defpoll USER :interval "10m" `whoami`)
 (defvar OPTIONS "images/options.png")
 
@@ -71,7 +70,7 @@
 (defwidget profile [] 
 	(box :class "wid_get" :orientation "v" :spacing 35 :space-evenly "false" :vexpand "false" :hexpand "false"
 		(box :style "background-image: url('${IMAGE}');" :class "profileimage" :halign "center")
-		(label :class "name" :halign "center" :wrap "true" :limit-width 25 :text NAME)))
+		(label :class "username" :halign "center" :wrap "true" :limit-width 25 :text NAME)))
 
 ;; apps
 (defwidget apps [] 
