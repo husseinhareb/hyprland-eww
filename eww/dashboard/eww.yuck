@@ -5,6 +5,15 @@
 (defpoll MINUTE :interval "1s" `date +\"%M\"`)
 (defpoll SECOND :interval "1s" `date +\"%S\"`)
 
+;;Date vars
+(defpoll DAYNAME :interval "1s" `date +\"%a\"`)
+(defpoll DAY :interval "1s" `date +\"%d\"`)
+(defpoll MONTH :interval "1s" `date +\"%m\"`)
+
+
+;;Profile vars
+(defpoll NAME :interval "1s" `whoami`)
+(defpoll IMAGE :interval "1s" `images/profile.jpeg`)
 
 ;; Weather vars
 (defpoll WEATHER :interval "5m" `scripts/weather.sh`)
@@ -49,6 +58,20 @@
 				(label :class "hour" :halign "start" :wrap "true" :limit-width 25 :text HOUR)
 				(label :class "minute" :halign "start" :wrap "true" :limit-width 25 :text MINUTE)
                 (label :class "second" :halign "start" :wrap "true" :limit-width 25 :text SECOND))))
+;; date
+(defwidget date [] 
+		(box :class "wid_get"
+			(box :class "clockbox" :orientation "v" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
+				(label :class "dayname" :halign "start" :wrap "true" :limit-width 25 :text DAYNAME)
+				(label :class "day" :halign "start" :wrap "true" :limit-width 25 :text DAY)
+                (label :class "month" :halign "start" :wrap "true" :limit-width 25 :text MONTH))))
+
+
+;; profile
+(defwidget profile [] 
+	(box :class "wid_get" :orientation "v" :spacing 35 :space-evenly "false" :vexpand "false" :hexpand "false"
+		(box :style "background-image: url('${IMAGE}');" :class "profileimage" :halign "center")
+		(label :class "name" :halign "center" :wrap "true" :limit-width 25 :text NAME)))
 
 ;; apps
 (defwidget apps [] 
@@ -65,6 +88,8 @@
 				(button :style "background-image: url('images/icons/apps/torrent.png');" :class "appicon" :onclick "scripts/apps --firefox")
 				(button :style "background-image: url('images/icons/apps/notion.png');" :class "appicon" :onclick "scripts/apps --firefox")
 				(button :style "background-image: url('images/icons/apps/obsidian.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
+
+
 
 ;; Music
 (defwidget music [] 
@@ -107,20 +132,6 @@
 							(label :class "infotext" :halign "start" :text BATPERC))))))
 
 
-;; profile
-(defwidget profile [] 
-		(box :class "wid_get"
-			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-				(button :onclick "scripts/widget_apps --nm"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${WIFIICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text NETSTAT)))
-				(button :onclick "sidedar/toggle_sidebar"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${IMAGE}');" :class "face")
-							(label :class "infotext" :halign "start" :text USER))))))
-
-
 
 ;; more
 (defwidget more [] 
@@ -135,7 +146,7 @@
 (defwindow time
            :monitor 0
            :geometry (geometry :x "500px"
-                               :y "1000px"
+                               :y "600px"
                                :width "120px"
                                :height "240px"
                                :anchor "top left")
@@ -144,6 +155,22 @@
            :windowtype "dock"
            :wm-ignore false
 (time))
+
+
+
+;; date
+(defwindow date
+           :monitor 0
+           :geometry (geometry :x "100px"
+                               :y "600px"
+                               :width "120px"
+                               :height "240px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(date))
 
 ;; music
 (defwindow music
@@ -215,8 +242,8 @@
            :monitor 0
            :geometry (geometry :x "1636px"
                                :y "500px"
-                               :width "230px"
-                               :height "45px"
+                               :width "200px"
+                               :height "500px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
