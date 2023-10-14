@@ -12,7 +12,7 @@
 	border: 1px solid #161616;
 	border-radius: 12px;
 }
-
+ 
 /** Icons ***********************************/
 .genicon {
     background-repeat: no-repeat;
@@ -170,11 +170,39 @@
 	font-weight : bold;
 }
 
+.username {
+	font-size: 28px;
+}
+
 .profileimage {
-	background-size: 60px;
-	min-height: 60px;
-	min-width: 60px;
+	background-size: 180px;
+	min-height: 180px;
+	min-width: 180px;
 	margin: 8px 0px 8px 0px;
 	border-radius: 100%;
 }
 
+.uptime{
+	font-size: 25px;
+	color: #C04364;
+	font-weight: bold;
+	margin: 160px 0px 0px 6px;
+}
+
+.reddit{
+	font-size: 68px;
+}
+
+.github{
+	font-size: 68px;
+}
+
+.youtube{
+	font-size: 68px;
+}
+
+.telegram{
+	background-size: 120px;
+	min-height: 120px;
+	min-width: 120px;
+}
