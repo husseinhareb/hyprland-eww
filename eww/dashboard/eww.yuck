@@ -49,6 +49,14 @@
 (defpoll USER :interval "10m" `whoami`)
 (defvar OPTIONS "images/options.png")
 
+;; System vars
+(defpoll HOST :interval "5s" `hostname`)
+(defpoll CPU_USAGE :interval "1s" `scripts/sys_info --cpu`)
+(defpoll MEM_USAGE :interval "1s" `scripts/sys_info --mem`)
+(defpoll BLIGHT :interval "1s" `scripts/sys_info --blight`)
+(defpoll BATTERY :interval "5s" `scripts/sys_info --bat`)
+
+
 ;; ** Widgets *************************************************************************
 
 
@@ -113,42 +121,22 @@
 				(button :class "btn_play" :onclick "scripts/spotify/spotify-pause.sh" STATUS)
 				(button :class "btn_next" :onclick "scripts/spotify/spotify-next.sh" "󰒭")))))
 
-;; audio
-(defwidget audio [] 
-		(box :class "wid_get"
-			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-
-				(button :onclick "scripts/volume --toggle"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${VOLICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text VOLUME)))
-				(button :onclick "scripts/mictoggle.sh"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${MICICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text MICROPHONE))))))
-
-;; screen
-(defwidget screen [] 
-		(box :class "wid_get"
-			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-
-				(button :onclick "scripts/volume --toggle"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${BRIGHTICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text "${BRIGHTNESS}%")))
-				(button :onclick "scripts/widget_apps --pow"
-					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-						(box :style "background-image: url('${BATICON}');" :class "trayicon")
-							(label :class "infotext" :halign "start" :text BATPERC))))))
-
-
-
-;; more
-(defwidget more [] 
-		(box :class "wid_get"
-        	(button :onclick "/home/shtam/.config/eww/dashboard/launch_bar.sh"
-			    (box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-								(box :style "background-image: url('${OPTIONS}');" :class "face")))))
+;; system
+(defwidget system [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(box :orientation "v" :spacing 35 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconcpu" :text "")
+				(scale :min 0 :max 100 :value CPU_USAGE :active "false"))
+			(box :class "mem_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconmem" :text "")
+				(scale :min 0 :max 100 :value MEM_USAGE :active "false"))
+			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbright" :text "")
+				(scale :min 0 :max 100 :value BLIGHT :active "false"))
+			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbat" :text "")
+				(scale :min 0 :max 100 :value BATTERY :active "false")))))
 
 ;; ** Windows *************************************************************************
 
@@ -198,7 +186,7 @@
 ;; weather
 (defwindow weather
            :monitor 0
-           :geometry (geometry :x "700px"
+           :geometry (geometry :x "820px"
                                :y "520px"
                                :width "120px"
                                :height "280px"
@@ -213,7 +201,7 @@
 ;; apps
 (defwindow apps
            :monitor 0
-           :geometry (geometry :x "1000px"
+           :geometry (geometry :x "980px"
                                :y "520px"
                                :width "280px"
                                :height "280px"
@@ -224,28 +212,27 @@
            :wm-ignore false
 (apps))
 
-
-
-
-
-
-
-
-
-
-
-
-
-;;more
-(defwindow more
+;; system
+(defwindow system
            :monitor 0
-           :geometry (geometry :x "1871px"
-                               :y "500px"
-                               :width "44px"
-                               :height "45px"
+           :geometry (geometry :x "1300px"
+                               :y "200px"
+                               :width "220px"
+                               :height "600px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
            :windowtype "dock"
            :wm-ignore false
-(more))
+(system))
+
+
+
+
+
+
+
+
+
+
+
