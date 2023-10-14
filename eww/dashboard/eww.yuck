@@ -50,12 +50,7 @@
 (defvar OPTIONS "images/options.png")
 
 ;; System vars
-(defpoll HOST :interval "5s" `hostname`)
-(defpoll CPU_USAGE :interval "1s" `top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}'`)
-(defpoll MEM_USAGE :interval "1s" `scripts/sys_info --mem`)
-(defpoll BLIGHT :interval "1s" `scripts/sys_info --blight`)
-(defpoll BATTERY :interval "5s" `scripts/sys_info --bat`)
-
+(defpoll CPUUSAGE :interval "1s" `top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}'`)
 
 ;; ** Widgets *************************************************************************
 
@@ -67,6 +62,8 @@
 				(label :class "hour" :halign "start" :wrap "true" :limit-width 25 :text HOUR)
 				(label :class "minute" :halign "start" :wrap "true" :limit-width 25 :text MINUTE)
                 (label :class "second" :halign "start" :wrap "true" :limit-width 25 :text SECOND))))
+
+
 ;; date
 (defwidget date [] 
 		(box :class "wid_get"
@@ -74,6 +71,7 @@
 				(label :class "dayname" :halign "start" :wrap "true" :limit-width 25 :text DAYNAME)
 				(label :class "day" :halign "start" :wrap "true" :limit-width 25 :text DAY)
                 (label :class "month" :halign "start" :wrap "true" :limit-width 25 :text MONTH))))
+
 
 ;; weather
 (defwidget weather [] 
@@ -83,6 +81,7 @@
 				(label :class "day" :halign "start" :wrap "true" :limit-width 25 :text DAY)
                 (label :class "month" :halign "start" :wrap "true" :limit-width 25 :text MONTH))))
 
+
 ;; profile
 (defwidget profile [] 
 	(box :class "wid_get" :orientation "v" :spacing 35 :space-evenly "false" :vexpand "false" :hexpand "false"
@@ -90,6 +89,7 @@
 		(label :class "username" :halign "center" :wrap "true" :limit-width 25 :text NAME)
 			(box :orientation "v" :valign "center" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "false" 
         		(label :class "uptime" :halign "start" :wrap "true" :limit-width 25 :text "󱎫 ${UPTIME}"))))
+
 
 ;; apps
 (defwidget apps [] 
@@ -126,24 +126,33 @@
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
 		(box :orientation "v" :spacing 35 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
 			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconcpu" :text "")
-				(scale :min 0 :max 100 :value CPU_USAGE :active "false"))
-			(box :class "mem_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconmem" :text "")
-				(scale :min 0 :max 100 :value MEM_USAGE :active "false"))
-			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconbright" :text "")
-				(scale :min 0 :max 100 :value BLIGHT :active "false"))
-			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconbat" :text "")
-				(scale :min 0 :max 100 :value BATTERY :active "false")))))
+			
+            	(label :class "iconcpu" :text "")
+				(scale :min 0 :max 100 :value CPUUSAGE :active "false")))))
+
+;; power
+(defwidget poweroff [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_poweroff" :onclick "systemctl poweroff" "")))
+
+(defwidget sleep [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_sleep" :onclick "systemctl suspend" "")))
+
+(defwidget logout [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_logout" :onclick "bruh" "")))
+
+(defwidget reboot [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_reboot" :onclick "systemctl reboot" "")))
 
 ;; ** Windows *************************************************************************
 
 ;; profile
 (defwindow profile
            :monitor 0
-           :geometry (geometry :x "400px"
+           :geometry (geometry :x "200px"
                                :y "200px"
                                :width "220px"
                                :height "600px"
@@ -153,6 +162,61 @@
            :windowtype "dock"
            :wm-ignore false
 (profile))
+
+;; github
+(defwindow github
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "200px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(github))
+
+;; youtube
+(defwindow youtube
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "360px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(youtube))
+;; reddit
+(defwindow reddit
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "520px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(reddit))
+
+;; telegram
+(defwindow telegram
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "680px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(telegram))
 
 ;; spotify
 (defwindow spotify
@@ -212,10 +276,67 @@
            :wm-ignore false
 (apps))
 
+
+
+;; poweroff
+(defwindow poweroff
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "200px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(poweroff))
+
+;; sleep
+(defwindow sleep
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "360px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(sleep))
+;; logout
+(defwindow logout
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "520px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(logout))
+
+;; reboot
+(defwindow reboot
+           :monitor 0
+           :geometry (geometry :x "1300px"
+                               :y "680px"
+                               :width "120px"
+                               :height "120px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(reboot))
+
 ;; system
 (defwindow system
            :monitor 0
-           :geometry (geometry :x "1300px"
+           :geometry (geometry :x "1440px"
                                :y "200px"
                                :width "220px"
                                :height "600px"
@@ -225,12 +346,6 @@
            :windowtype "dock"
            :wm-ignore false
 (system))
-
-
-
-
-
-
 
 
 
