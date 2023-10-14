@@ -54,6 +54,22 @@
 
 ;; ** Widgets *************************************************************************
 
+;; github
+(defwidget github [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "github" :onclick "systemctl poweroff" "󰊤")))
+;;youtube
+(defwidget youtube [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_sleep" :onclick "systemctl suspend" "")))
+;;reddit
+(defwidget reddit [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_logout" :onclick "bruh" "")))
+;;telegram
+(defwidget telegram [] 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
+		(button :class "btn_reboot" :onclick "systemctl reboot" "")))
 
 ;; time
 (defwidget time [] 
@@ -166,7 +182,7 @@
 ;; github
 (defwindow github
            :monitor 0
-           :geometry (geometry :x "1300px"
+           :geometry (geometry :x "500px"
                                :y "200px"
                                :width "120px"
                                :height "120px"
@@ -180,7 +196,7 @@
 ;; youtube
 (defwindow youtube
            :monitor 0
-           :geometry (geometry :x "1300px"
+           :geometry (geometry :x "500px"
                                :y "360px"
                                :width "120px"
                                :height "120px"
@@ -193,7 +209,7 @@
 ;; reddit
 (defwindow reddit
            :monitor 0
-           :geometry (geometry :x "1300px"
+           :geometry (geometry :x "500px"
                                :y "520px"
                                :width "120px"
                                :height "120px"
@@ -207,7 +223,7 @@
 ;; telegram
 (defwindow telegram
            :monitor 0
-           :geometry (geometry :x "1300px"
+           :geometry (geometry :x "500px"
                                :y "680px"
                                :width "120px"
                                :height "120px"
