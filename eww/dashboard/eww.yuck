@@ -61,7 +61,7 @@
 ;;youtube
 (defwidget youtube [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_sleep" :onclick "systemctl suspend" "")))
+		(button :class "youtube" :onclick "systemctl suspend" "󰗃")))
 ;;reddit
 (defwidget reddit [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
@@ -69,7 +69,7 @@
 ;;telegram
 (defwidget telegram [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_reboot" :onclick "systemctl reboot" "")))
+		(button :class "telegram" :style "background-image: url('images/icons/apps/telegram.png');"  :onclick "systemctl reboot")))
 
 ;; time
 (defwidget time [] 
