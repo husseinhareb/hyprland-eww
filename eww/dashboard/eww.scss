@@ -254,22 +254,20 @@
 }
 
 
-.iconcpu, .iconmem, .iconbright, .iconbat {
+.iconmic, .iconvolume, .iconbrightness{
 	font-size : 32px;
 	font-weight : normal;
 }
-.iconcpu {
+.iconmic {
 	color: #f7768e;
 }
-.iconmem {
+.iconvolume {
 	color: #9ece6a;
 }
-.iconbright {
+.iconbrightness {
 	color: #e0af68;
 }
-.iconbat {
-	color: #7aa2f7;
-}
+
 
 .volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough {
 	all: unset;
@@ -290,9 +288,6 @@
 .brightness_bar scale trough highlight {
 	background-color: #9ece6a;
 }
-.bright_bar scale trough highlight {
+.mic_bar scale trough highlight {
 	background-color: #e0af68;
-}
-.bat_bar scale trough highlight {
-	background-color: #7aa2f7;
 }
