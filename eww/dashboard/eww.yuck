@@ -57,19 +57,19 @@
 ;; github
 (defwidget github [] 
 	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
-		(button :style "background-image: url('images/icons/apps/github.png');" :class "github" :onclick "systemctl poweroff")))
+		(button :style "background-image: url('images/icons/websites/github.png');" :class "github" :onclick "firefox www.github.com")))
 ;;youtube
 (defwidget youtube [] 
 	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
-		(button :style "background-image: url('images/icons/apps/youtube.png');" :class "youtube" :onclick "systemctl suspend")))
+		(button :style "background-image: url('images/icons/websites/youtube.png');" :class "youtube" :onclick "firefox www.youtube.com")))
 ;;reddit
 (defwidget reddit [] 
 	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
-		(button :class "reddit" :style "background-image: url('images/icons/apps/reddit.png');" :onclick "reddit")))
+		(button :class "reddit" :style "background-image: url('images/icons/websites/reddit.png');" :onclick "firefox www.reddit.com")))
 ;;telegram
 (defwidget telegram [] 
 	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
-		(button :class "telegram" :style "background-image: url('images/icons/apps/telegram.png');"  :onclick "firefox")))
+		(button :class "telegram" :style "background-image: url('images/icons/websites/telegram.png');"  :onclick "firefox www.telegram.com")))
 
 ;; time
 (defwidget time [] 
@@ -149,19 +149,19 @@
 ;; power
 (defwidget poweroff [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_poweroff" :onclick "systemctl poweroff" "")))
+		(button :class "poweroff" :style "background-image: url('images/icons/system/shutdown.png');" :onclick "systemctl poweroff" )))
 
 (defwidget sleep [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_sleep" :onclick "systemctl suspend" "")))
+		(button :class "sleep" :style "background-image: url('images/icons/system/sleep.png');" :onclick "systemctl suspend")))
 
 (defwidget logout [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_logout" :onclick "bruh" "")))
+		(button :class "logout" :style "background-image: url('images/icons/system/logout.png');" :onclick "hyprctl dispatch exit")))
 
 (defwidget reboot [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_reboot" :onclick "systemctl reboot" "")))
+		(button :class "reboot" :style "background-image: url('images/icons/system/reboot.png');" :onclick "systemctl reboot")))
 
 ;; ** Windows *************************************************************************
 
