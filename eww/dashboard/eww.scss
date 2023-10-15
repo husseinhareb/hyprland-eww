@@ -271,7 +271,7 @@
 	color: #7aa2f7;
 }
 
-.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
+.volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough {
 	all: unset;
 	background-color: #282C34;
 	border-radius: 16px;
@@ -279,15 +279,15 @@
 	min-width: 240px;
 }
 
-.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough highlight {
+.volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough highlight {
 	all: unset;
 	border-radius: 16px;
 }
 
-.cpu_bar scale trough highlight {
+.volume_bar scale trough highlight {
 	background-color: #f7768e;
 }
-.mem_bar scale trough highlight {
+.brightness_bar scale trough highlight {
 	background-color: #9ece6a;
 }
 .bright_bar scale trough highlight {
