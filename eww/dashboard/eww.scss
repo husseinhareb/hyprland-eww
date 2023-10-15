@@ -189,13 +189,6 @@
 	margin: 160px 0px 0px 6px;
 }
 
-.reddit{
-	font-size: 68px;
-}
-
-.github{
-	font-size: 68px;
-}
 
 .youtube{
 	font-size: 68px;
@@ -205,4 +198,33 @@
 	background-size: 120px;
 	min-height: 120px;
 	min-width: 120px;
+	background-color: #29b6f6;
+	border: 1px solid #161616;
+	border-radius: 12px;
+}
+
+.reddit{
+	background-size: 120px;
+	min-height: 120px;
+	min-width: 120px;
+	background-color: #ff4500;
+	border: 1px solid #161616;
+	border-radius: 12px;
+}
+
+.youtube{
+	background-size: 120px;
+	min-height: 120px;
+	min-width: 120px;
+	background-color: #dd2c28;
+	border: 1px solid #161616;
+	border-radius: 12px;
+}
+.github{
+	background-size: 120px;
+	min-height: 120px;
+	min-width: 120px;
+	background-color: #1b1f23;
+	border: 1px solid #161616;
+	border-radius: 12px;
 }
