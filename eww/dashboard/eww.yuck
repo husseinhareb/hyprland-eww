@@ -27,18 +27,11 @@
 (defpoll STATUS :interval "1s" `scripts/spotify/spotify-status.sh`)
 
 
-
-;; User
-(defpoll USER :interval "10m" `whoami`)
-(defvar OPTIONS "images/options.png")
-
 ;; System vars
 (defpoll VOLUME :interval "1s" `scripts/system.sh volume`)
 (defpoll BRIGHTNESS :interval "1s" `scripts/system.sh brightness`)
+(defpoll MIC :interval "1s" `scripts/system.sh mic`)
 
-(defpoll MEM_USAGE :interval "1s" `scripts/sys_info --mem`)
-(defpoll BLIGHT :interval "1s" `scripts/system.sh`)
-(defpoll BATTERY :interval "5s" `scripts/sys_info --bat`)
 
 ;; ** Widgets *************************************************************************
 
@@ -128,19 +121,17 @@
 ;; system
 (defwidget system [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(box :orientation "v" :spacing 35 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
+		(box :orientation "v" :spacing 35 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false"     
 			(box :class "volume_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconcpu" :text "󰕾")
+				(label :class "iconvolume" :text "󰕾")
 				(scale :min 0 :max 100 :value VOLUME :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%" ))
 			(box :class "brightness_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconmem" :text "󰃟")
+				(label :class "iconbrightness" :text "󰃟")
 				(scale :min 0 :max 100 :value BRIGHTNESS :onchange "brightnessctl set {}%"))
-			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconbright" :text "")
-				(scale :min 0 :max 100 :value BLIGHT :active "false"))
-			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconbat" :text "")
-				(scale :min 0 :max 100 :value BATTERY :active "false")))))
+		  (box :class "mic_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconmic" :text "󰕾")
+				(scale :min 0 :max 100 :value 30 :onchange "pactl set-source-volume 0 {}%" )))))
+
 ;; power
 (defwidget poweroff [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
