@@ -27,24 +27,14 @@
 (defpoll STATUS :interval "1s" `scripts/spotify/spotify-status.sh`)
 
 
-;; Battery vars
-(defpoll BATICON :interval "1s" `scripts/battery.sh --icon`)
-(defpoll BATPERC :interval "10s" `scripts/battery.sh --perc`)
-
-;; Screen 
-(defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
-(defpoll BRIGHTICON :interval "1s" `scripts/brightness.sh icon`)
-
-
 
 ;; User
 (defpoll USER :interval "10m" `whoami`)
 (defvar OPTIONS "images/options.png")
 
 ;; System vars
-(defpoll HOST :interval "5s" `hostname`)
-(defpoll CPU_USAGE :interval "1s" `scripts/sys_info --cpu`)
 (defpoll VOLUME :interval "1s" `scripts/system.sh volume`)
+(defpoll BRIGHTNESS :interval "1s" `scripts/system.sh brightness`)
 
 (defpoll MEM_USAGE :interval "1s" `scripts/sys_info --mem`)
 (defpoll BLIGHT :interval "1s" `scripts/system.sh`)
@@ -139,10 +129,18 @@
 (defwidget system [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
 		(box :orientation "v" :spacing 35 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
-			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconcpu" :text "")
-				(scale :min 0 :max 100 :value 30 )))))
-
+			(box :class "volume_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconcpu" :text "󰕾")
+				(scale :min 0 :max 100 :value VOLUME :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%" ))
+			(box :class "brightness_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconmem" :text "󰃟")
+				(scale :min 0 :max 100 :value BRIGHTNESS :onchange "brightnessctl set {}%"))
+			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbright" :text "")
+				(scale :min 0 :max 100 :value BLIGHT :active "false"))
+			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
+				(label :class "iconbat" :text "")
+				(scale :min 0 :max 100 :value BATTERY :active "false")))))
 ;; power
 (defwidget poweroff [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
