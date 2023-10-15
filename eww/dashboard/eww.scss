@@ -255,39 +255,82 @@
 
 
 .iconmic, .iconvolume, .iconbrightness{
-	font-size : 32px;
+	font-size : 28px;
 	font-weight : normal;
 }
 .iconmic {
-	color: #f7768e;
+	color: #59da32;
 }
 .iconvolume {
-	color: #9ece6a;
+	color: #4a6be2;
 }
 .iconbrightness {
-	color: #e0af68;
+	color: #f4bd6b;
 }
 
 
 .volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough {
 	all: unset;
 	background-color: #282C34;
-	border-radius: 16px;
-	min-height: 28px;
-	min-width: 240px;
+	border-radius: 10px;
+	min-height: 18px;
+	min-width: 220px;
 }
 
 .volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough highlight {
 	all: unset;
-	border-radius: 16px;
+	border-radius: 12px;
 }
 
 .volume_bar scale trough highlight {
-	background-color: #f7768e;
+	background-color: #4a6be2;
 }
 .brightness_bar scale trough highlight {
-	background-color: #9ece6a;
+	background-color: #e0af68;
 }
 .mic_bar scale trough highlight {
-	background-color: #e0af68;
+	background-color: #59da32;
+}
+
+.res_box {
+	background-color: #F0E9E1;
+	border: 1px solid #E6DFD7;
+	border-radius: 12px;
+	padding: 14px 18px 14px 18px;
+}
+
+.res_circle {
+	background-color: #E1DCD2;
+	border: 0px solid #161616;
+	border-radius: 100%;
+	padding: 0px;
+}
+
+.res_circle_small {
+	background-color: #F5EEE6;
+	border: 0px solid #161616;
+	border-radius: 100%;
+	padding: 35px;
+}
+
+.res_text {
+	background-color: #E6E1D7;
+	border: 1px solid #161616;
+	border-radius: 16px;
+	font-size : 14px;
+	padding: 0px 8px 0px 8px;
+	margin: 0px 0px 0px 0px;
+	font-weight : bold;
+}
+
+.res_cpu {
+	color: #FD6B85;
+}
+
+.res_mem {
+	color: #B1A6EE;
+}
+
+.res_disk {
+	color: #67D4F1;
 }
