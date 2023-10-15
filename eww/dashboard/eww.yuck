@@ -32,6 +32,11 @@
 (defpoll BRIGHTNESS :interval "1s" `scripts/system.sh brightness`)
 (defpoll MIC :interval "1s" `scripts/system.sh mic`)
 
+;; Resources vars
+(defpoll CPU_USAGE :interval "1s" `scripts/sys_info --cpu`)
+(defpoll MEM_USAGE :interval "1s" `scripts/sys_info --mem`)
+(defpoll DISK_USAGE :interval "1s" `scripts/sys_info --disk`)
+
 
 ;; ** Widgets *************************************************************************
 
@@ -50,7 +55,7 @@
 ;;telegram
 (defwidget telegram [] 
 	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
-		(button :class "telegram" :style "background-image: url('images/icons/websites/telegram.png');"  :onclick "firefox www.telegram.com")))
+		(button :class "telegram" :style "background-image: url('images/icons/websites/telegram.png');"  :onclick "firefox https://web.telegram.org/")))
 
 ;; time
 (defwidget time [] 
@@ -129,8 +134,8 @@
 				(label :class "iconbrightness" :text "󰃟")
 				(scale :min 0 :max 100 :value BRIGHTNESS :onchange "brightnessctl set {}%"))
 		  (box :class "mic_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconmic" :text "󰕾")
-				(scale :min 0 :max 100 :value 30 :onchange "pactl set-source-volume 0 {}%" )))))
+				(label :class "iconmic" :text "")
+				(scale :min 0 :max 100 :value MIC :onchange "pactl set-source-volume 0 {}%")))))
 
 ;; power
 (defwidget poweroff [] 
@@ -148,6 +153,22 @@
 (defwidget reboot [] 
 	(box :class "wid_get" :vexpand "false" :hexpand "false" 
 		(button :class "reboot" :style "background-image: url('images/icons/system/reboot.png');" :onclick "systemctl reboot")))
+
+
+(defwidget resources [] 
+		(box :class "wid_get"
+				(box :class "res_box" :orientation "v" :valign "center" :halign "center" :spacing 15 :space-evenly "false"
+					(box :class "res_circle" :orientation "v" :valign "center" :halign "center"
+						(circular-progress :class "res_cpu" :value CPU_USAGE :thickness 5
+							(label :class "res_circle_small" :text "CPU")))
+					(label :class "res_text" :valign "end" :halign "center" :text "${CPU_USAGE}%"))
+				(box :class "res_box" :orientation "v" :valign "center" :halign "center" :spacing 15 :space-evenly "false"
+					(box :class "res_circle" :orientation "v" :valign "center" :halign "center"
+						(circular-progress :class "res_mem" :value MEM_USAGE :thickness 5
+							(label :class "res_circle_small" :text "MEMORY")))
+					(label :class "res_text" :valign "end" :halign "center" :text "${MEM_USAGE}%"))))
+
+
 
 ;; ** Windows *************************************************************************
 
@@ -341,7 +362,7 @@
            :geometry (geometry :x "1440px"
                                :y "200px"
                                :width "220px"
-                               :height "600px"
+                               :height "280px"
                                :anchor "top left")
            :stacking "fg"
            :reserve (struts :distance "80px" :side "top")
@@ -350,6 +371,19 @@
 (system))
 
 
+;; resources
+(defwindow resources
+           :monitor 0
+           :geometry (geometry :x "1440px"
+                               :y "520px"
+                               :width "220px"
+                               :height "280px"
+                               :anchor "top left")
+           :stacking "fg"
+           :reserve (struts :distance "80px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+(resources))
 
 
 
