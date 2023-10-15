@@ -228,3 +228,30 @@
 	border: 1px solid #161616;
 	border-radius: 12px;
 }
+
+
+/** System ********************************************/
+.iconcpu, .iconmem, .iconbright, .iconbat {
+	font-size : 32px;
+	font-weight : normal;
+}
+.iconcpu {
+	color: #BF616A;
+}
+.iconmem {
+	color: #A3BE8C;
+}
+.iconbright {
+	color: #EBCB8B;
+}
+.iconbat {
+	color: #88C0D0;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
+	all: unset;
+	background-color: #3A404C;
+	border-radius: 16px;
+	min-height: 28px;
+	min-width: 240px;
+}
