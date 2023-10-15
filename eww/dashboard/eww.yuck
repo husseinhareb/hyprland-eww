@@ -35,22 +35,20 @@
 (defpoll BRIGHTNESS :interval "1s" `scripts/brightness.sh level`)
 (defpoll BRIGHTICON :interval "1s" `scripts/brightness.sh icon`)
 
-;; Audio vars
-(defpoll VOLICON :interval "1s" `scripts/volume --icon`)
-(defpoll VOLUME :interval "1s" `scripts/volume --get`)
-(defpoll MICROPHONE :interval "1s" "scripts/mic.sh")
-(defpoll MICICON :interval "1s" "scripts/micicon.sh")
 
-;; Network
-(defpoll WIFIICON :interval "10s" `scripts/check-network --icon`)
-(defpoll NETSTAT :interval "10s" `scripts/check-network --stat`)
 
 ;; User
 (defpoll USER :interval "10m" `whoami`)
 (defvar OPTIONS "images/options.png")
 
 ;; System vars
-(defpoll CPUUSAGE :interval "1s" `top -bn1 | grep "Cpu(s)" | awk '{print $2 + $4}'`)
+(defpoll HOST :interval "5s" `hostname`)
+(defpoll CPU_USAGE :interval "1s" `scripts/sys_info --cpu`)
+(defpoll VOLUME :interval "1s" `scripts/system.sh volume`)
+
+(defpoll MEM_USAGE :interval "1s" `scripts/sys_info --mem`)
+(defpoll BLIGHT :interval "1s" `scripts/system.sh`)
+(defpoll BATTERY :interval "5s" `scripts/sys_info --bat`)
 
 ;; ** Widgets *************************************************************************
 
@@ -139,20 +137,11 @@
 
 ;; system
 (defwidget system [] 
-	(box :class "genwin" :vexpand "false" :hexpand "false" 
+	(box :class "wid_get" :vexpand "false" :hexpand "false" 
 		(box :orientation "v" :spacing 35 :halign "center" :valign "center" :space-evenly "false" :vexpand "false" :hexpand "false" 
 			(box :class "cpu_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
 				(label :class "iconcpu" :text "")
-				(scale :min 0 :max 100 :value CPU_USAGE :active "false"))
-			(box :class "mem_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconmem" :text "")
-				(scale :min 0 :max 100 :value MEM_USAGE :active "false"))
-			(box :class "bright_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconbright" :text "")
-				(scale :min 0 :max 100 :value BLIGHT :active "false"))
-			(box :class "bat_bar" :orientation "h" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
-				(label :class "iconbat" :text "")
-				(scale :min 0 :max 100 :value BATTERY :active "false")))))
+				(scale :min 0 :max 100 :value 30 )))))
 
 ;; power
 (defwidget poweroff [] 
