@@ -56,20 +56,20 @@
 
 ;; github
 (defwidget github [] 
-	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "github" :onclick "systemctl poweroff" "󰊤")))
+	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
+		(button :style "background-image: url('images/icons/apps/github.png');" :class "github" :onclick "systemctl poweroff")))
 ;;youtube
 (defwidget youtube [] 
-	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "youtube" :onclick "systemctl suspend" "󰗃")))
+	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
+		(button :style "background-image: url('images/icons/apps/youtube.png');" :class "youtube" :onclick "systemctl suspend")))
 ;;reddit
 (defwidget reddit [] 
-	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "btn_logout" :onclick "bruh" "")))
+	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
+		(button :class "reddit" :style "background-image: url('images/icons/apps/reddit.png');" :onclick "reddit")))
 ;;telegram
 (defwidget telegram [] 
-	(box :class "wid_get" :vexpand "false" :hexpand "false" 
-		(button :class "telegram" :style "background-image: url('images/icons/apps/telegram.png');"  :onclick "systemctl reboot")))
+	(box :class "wid_get_2" :vexpand "false" :hexpand "false" 
+		(button :class "telegram" :style "background-image: url('images/icons/apps/telegram.png');"  :onclick "firefox")))
 
 ;; time
 (defwidget time [] 
