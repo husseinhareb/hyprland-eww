@@ -190,9 +190,6 @@
 }
 
 
-.youtube{
-	font-size: 68px;
-}
 
 .telegram{
 	background-size: 120px;
@@ -229,29 +226,73 @@
 	border-radius: 12px;
 }
 
+.poweroff{
+	background-size: 100px;
+	min-height: 100px;
+	min-width: 100px;
+	margin: 10px 0px 0px 10px;
+}
+.sleep{
+	background-size: 100px;
+	min-height: 100px;
+	min-width: 100px;
+	margin: 10px 0px 0px 10px;
+}
 
-/** System ********************************************/
+.logout{
+	background-size: 100px;
+	min-height: 100px;
+	min-width: 100px;
+	margin: 10px 0px 0px 10px;
+}
+
+.reboot{
+	background-size: 100px;
+	min-height: 100px;
+	min-width: 100px;
+	margin: 10px 0px 0px 10px;
+}
+
+
 .iconcpu, .iconmem, .iconbright, .iconbat {
 	font-size : 32px;
 	font-weight : normal;
 }
 .iconcpu {
-	color: #BF616A;
+	color: #f7768e;
 }
 .iconmem {
-	color: #A3BE8C;
+	color: #9ece6a;
 }
 .iconbright {
-	color: #EBCB8B;
+	color: #e0af68;
 }
 .iconbat {
-	color: #88C0D0;
+	color: #7aa2f7;
 }
 
 .cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough {
 	all: unset;
-	background-color: #3A404C;
+	background-color: #282C34;
 	border-radius: 16px;
 	min-height: 28px;
 	min-width: 240px;
+}
+
+.cpu_bar, .mem_bar, .bright_bar, .bat_bar, scale trough highlight {
+	all: unset;
+	border-radius: 16px;
+}
+
+.cpu_bar scale trough highlight {
+	background-color: #f7768e;
+}
+.mem_bar scale trough highlight {
+	background-color: #9ece6a;
+}
+.bright_bar scale trough highlight {
+	background-color: #e0af68;
+}
+.bat_bar scale trough highlight {
+	background-color: #7aa2f7;
 }
