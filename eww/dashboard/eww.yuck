@@ -118,10 +118,10 @@
 		(box :orientation "v" :spacing 20 :space-evenly "false" :vexpand "false" :hexpand "false" 
 			(label :halign "center" :class "song" :wrap "true" :limit-width 20 :text SONG)
 			(label :halign "center" :class "artist" :wrap "true" :limit-width 15 :text ARTIST)
-			(box :orientation "h" :spacing 20 :halign "center" :space-evenly "true" :vexpand "false" :hexpand "false" 
-				(button :class "btn_prev" :onclick "scripts/spotify/spotify-previous.sh" "󰒮")
-				(button :class "btn_play" :onclick "scripts/spotify/spotify-pause.sh" STATUS)
-				(button :class "btn_next" :onclick "scripts/spotify/spotify-next.sh" "󰒭")))))
+			(box :class "buttons" :orientation "h" :spacing 20 :halign "center" :space-evenly "true" :vexpand "false" :hexpand "false" 
+				(button :class "prev" :onclick "scripts/spotify/spotify-previous.sh" "󰒮")
+				(button :class "play" :onclick "scripts/spotify/spotify-pause.sh" STATUS)
+				(button :class "next" :onclick "scripts/spotify/spotify-next.sh" "󰒭")))))
 
 ;; system
 (defwidget system [] 
