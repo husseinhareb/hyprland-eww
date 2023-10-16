@@ -14,30 +14,12 @@
 }
  
 /** Icons ***********************************/
-.genicon {
-    background-repeat: no-repeat;
-	background-size: 20px;
-	min-height: 20px;
-	min-width: 20px;
-}
-
 .appicon {
     background-repeat: no-repeat;
-	background-size: 64px;
-	min-height: 64px;
-	min-width: 64px;
-	margin: 8px 8px 0px 8px;
-}
-
-.workspace {
-	background-color: #C04364;
-	color: #ffffff;
-	border: 2px solid #161616;
-	border-radius: 16px;
-	font-size : 14px;
-	padding: 0px 6px 0px 6px;
-	margin: -2px 0px 0px 0px;
-	font-weight : bold;
+	background-size: 71px;
+	min-height: 71px;
+	min-width: 71px;
+	margin: 10px 8px 0px 8px;
 }
 
 /** Clock ********************************************/
@@ -46,16 +28,19 @@
 }
 
 .hour{
-	font-size: 80px;
+	font-size: 60px;
 	margin: 0px 0px 0px 0px;
+	color: #78ed84;
 }
 .minute{
 	font-size: 40px;
 	margin: 0px 0px 0px 30px;
+	color: #78ed84;
 }
 .second{
 	font-size: 20px;
 	margin: 0px 0px 0px 60px;
+	color: #78ed84;
 }
 .time {
 	font-size : 14px;
@@ -79,43 +64,25 @@
 	font-size: 23px;
 }
 
-/** Weather ********************************************/
-.weatherbox {
-	margin : 0px 0px 0px -90px;
-}
-
-.weathericon {
-	font-family: Iosevka Nerd Font;
-	font-size : 32px;
-	font-weight : normal;
-}
-
-.weathertemp {
-	font-size : 22px;
-	font-weight : bold;
-	margin : 0px 0px 0px -5px;
-	color: #161616;
-}
-
 /** Music *************************************************/
 .album_art {
-	background-size: 240px;
-	min-height: 240px;
-	min-width: 240px;
+	background-size: 100px;
+	min-height: 100px;
+	min-width: 100px;
 	margin: 20px;
 	border-radius: 14px;
 }
 
 .song {
 	color: #8FBCBB;
-	font-size : 24px;
+	font-size : 4px;
 	font-weight : bold;
 	margin : 40px 0px 0px 0px;
 }
 
 .artist {
 	color: #EBCB8B;
-	font-size : 16px;
+	font-size : 6px;
 	font-weight : normal;
 	margin : 0px 0px 15px 0px;
 }
@@ -142,33 +109,9 @@
 
 
 /** System *************************************************/
-.mails {
-	background-color: #FFC8C8;
-	border: 0px solid #161616;
-	border-radius: 16px;
-	font-size : 14px;
-	padding: 0px 5px 0px 5px;
-	margin: 10px 0px 10px 0px;
-	font-weight : bold;
-}
 
-.trayicon {
-    background-repeat: no-repeat;
-	background-size: 24px;
-	min-height: 24px;
-	min-width: 24px;
-	margin: 8px 0px 0px 0px;
-}
 
-.infotext {
-	background-color: #DCD7CD;
-	border: 0px solid #161616;
-	border-radius: 16px;
-	font-size : 14px;
-	padding: 0px 5px 0px 5px;
-	margin: 10px 0px 10px 0px;
-	font-weight : bold;
-}
+
 
 .username {
 	font-size: 28px;
@@ -269,7 +212,7 @@
 }
 
 
-.volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough {
+.volume_bar, .brightness_bar, scale trough {
 	all: unset;
 	background-color: #282C34;
 	border-radius: 10px;
@@ -277,7 +220,7 @@
 	min-width: 220px;
 }
 
-.volume_bar, .brightness_bar, .bright_bar, .bat_bar, scale trough highlight {
+.volume_bar, .brightness_bar, scale trough highlight {
 	all: unset;
 	border-radius: 12px;
 }
@@ -293,21 +236,20 @@
 }
 
 .res_box {
-	background-color: #F0E9E1;
-	border: 1px solid #E6DFD7;
+	background-color: #9484ac;
 	border-radius: 12px;
 	padding: 14px 18px 14px 18px;
 }
 
 .res_circle {
-	background-color: #E1DCD2;
+	background-color: #e7e2e2;
 	border: 0px solid #161616;
 	border-radius: 100%;
 	padding: 0px;
 }
 
 .res_circle_small {
-	background-color: #F5EEE6;
+	background-color: #b7a4d3;
 	border: 0px solid #161616;
 	border-radius: 100%;
 	padding: 35px;
@@ -328,9 +270,6 @@
 }
 
 .res_mem {
-	color: #B1A6EE;
+	color: #6f57f5;
 }
 
-.res_disk {
-	color: #67D4F1;
-}
