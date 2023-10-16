@@ -29,7 +29,7 @@
 
 .hour{
 	font-size: 60px;
-	margin: 0px 0px 0px 0px;
+	margin: -30px 0px 0px -15px;
 	color: #78ed84;
 }
 .minute{
@@ -39,7 +39,7 @@
 }
 .second{
 	font-size: 20px;
-	margin: 0px 0px 0px 60px;
+	margin: 0px 0px -40px 60px;
 	color: #78ed84;
 }
 .time {
@@ -53,58 +53,67 @@
 }
 /** Date ********************************************/
 .dayname{
-	font-size: 32px;
+	font-size: 60px;
+	margin: -50px 0px 0px -15px;
+	color: #ed7878;
+	font-weight: bold;
 }
 
 .day{
-	font-size: 20px;
+	font-size: 40px;
+	margin: 0px 0px 0px 20px;
+	color: #ed7878;
+	font-weight: bold;
 }
 
 .month{
-	font-size: 23px;
+	font-size: 20px;
+	margin: 0px 0px -40px 60px;
+	font-weight: bold;
+	color: #ed7878;
 }
 
 /** Music *************************************************/
 .album_art {
-	background-size: 100px;
-	min-height: 100px;
-	min-width: 100px;
+	background-size: 220px;
+	min-height: 220px;
+	min-width: 220px;
 	margin: 20px;
 	border-radius: 14px;
 }
 
 .song {
 	color: #8FBCBB;
-	font-size : 4px;
+	font-size : 20px;
 	font-weight : bold;
 	margin : 40px 0px 0px 0px;
 }
 
 .artist {
 	color: #EBCB8B;
-	font-size : 6px;
+	font-size : 20px;
 	font-weight : normal;
 	margin : 0px 0px 15px 0px;
 }
 
-.btn_prev, .btn_play, .btn_next {
-	font-family: Iosevka Nerd Font;
-}
-.btn_prev {
+
+.prev {
 	color: #EBCB8B;
 	font-size : 42px;
 	font-weight : normal;
+	margin: 0px 0px 0px 50px
 }
-.btn_play {
+.play {
 	color: #A3BE8C;
 	font-size : 60px;
 	font-weight : bold;
 	margin: 0px 10px 0px 0px;
 }
-.btn_next {
+.next {
 	color: #EBCB8B;
 	font-size : 42px;
 	font-weight : normal;
+	margin: 0px 40px 0px 0px
 }
 
 
@@ -156,7 +165,7 @@
 	background-size: 120px;
 	min-height: 120px;
 	min-width: 120px;
-	background-color: #dd2c28;
+	background-color: #cd201e;
 	border: 1px solid #161616;
 	border-radius: 12px;
 }
@@ -202,10 +211,10 @@
 	font-weight : normal;
 }
 .iconmic {
-	color: #59da32;
+	color: #85da6c;
 }
 .iconvolume {
-	color: #4a6be2;
+	color: #5c64ff;
 }
 .iconbrightness {
 	color: #f4bd6b;
@@ -226,13 +235,13 @@
 }
 
 .volume_bar scale trough highlight {
-	background-color: #4a6be2;
+	background-color: #5c64ff;
 }
 .brightness_bar scale trough highlight {
 	background-color: #e0af68;
 }
 .mic_bar scale trough highlight {
-	background-color: #59da32;
+	background-color: #85da6c;
 }
 
 .res_box {
