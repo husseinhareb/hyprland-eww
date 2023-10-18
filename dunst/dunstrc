@@ -1,3 +1,11 @@
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#181825AA"
+    foreground = "#CDD6F4"
+    timeout = 10
+
 [urgency_normal]
     background = "#181825AA"
     foreground = "#CDD6F4"
