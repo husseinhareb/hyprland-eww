@@ -14,12 +14,6 @@
 }
 
 /** Icons ***********************************/
-.genicon {
-    background-repeat: no-repeat;
-	background-size: 20px;
-	min-height: 20px;
-	min-width: 20px;
-}
 
 .appicon {
     background-repeat: no-repeat;
@@ -28,16 +22,7 @@
 	min-width: 40px;
 }
 
-.workspace {
-	background-color: #C04364;
-	color: #ffffff;
-	border: 2px solid #161616;
-	border-radius: 16px;
-	font-size : 14px;
-	padding: 0px 6px 0px 6px;
-	margin: -2px 0px 0px 0px;
-	font-weight : bold;
-}
+
 
 /** Clock ********************************************/
 .clockbox {
@@ -75,9 +60,9 @@
 /** Music *************************************************/
 .album_art {
     background-repeat: no-repeat;
-	background-size: 30px;
-	min-height: 30px;
-	min-width: 30px;
+	background-size: 35px;
+	min-height: 35px;
+	min-width: 35px;
 	margin: 4px;
 	border-radius: 6px;
 }
@@ -116,15 +101,7 @@
 }
 
 /** System *************************************************/
-.mails {
-	background-color: #FFC8C8;
-	border: 0px solid #161616;
-	border-radius: 16px;
-	font-size : 14px;
-	padding: 0px 5px 0px 5px;
-	margin: 10px 0px 10px 0px;
-	font-weight : bold;
-}
+
 
 .trayicon {
     background-repeat: no-repeat;
@@ -152,4 +129,3 @@
 	border-radius: 100%;
 }
 
-/** EOF *************************************************/
