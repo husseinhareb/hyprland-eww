@@ -1,1 +1,1 @@
-python3 /home/shtam/.config/eww/arin/scripts/weather.py
+python3 /home/shtam/.config/eww/topbar/scripts/weather.py
