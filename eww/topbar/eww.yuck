@@ -61,8 +61,8 @@
 				(button :style "background-image: url('images/icons/apps/terminal.png');" :class "appicon" :onclick "scripts/apps --kitty")
 				(button :style "background-image: url('images/icons/apps/firefox.png');" :class "appicon" :onclick "scripts/apps --firefox"))))
 
-;; music
-(defwidget music [] 
+;; spotify
+(defwidget spotify [] 
 		(box :class "dockbox"
 			(box :orientation "h" :spacing 0 :valign "center" :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
 				(box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
@@ -93,7 +93,6 @@
 (defwidget screen [] 
 		(box :class "dockbox"
 			(box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
-
 				(button :onclick "scripts/volume --toggle"
 					(box :orientation "h" :spacing 8 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 						(box :style "background-image: url('${BRIGHTICON}');" :class "trayicon")
@@ -122,7 +121,7 @@
 ;; more
 (defwidget more [] 
 		(box :class "dockbox"
-        	(button :onclick "/home/shtam/.config/eww/dashboard/launch_dashboard"
+        	(button :onclick "/home/shtam/.config/eww/dashboard/launch_bar.sh"
 			    (box :orientation "h" :spacing 16 :valign "center" :halign "center" :space-evenly "false" :vexpand "false" :hexpand "false"
 								(box :style "background-image: url('${OPTIONS}');" :class "face")))))
 
@@ -142,8 +141,8 @@
            :wm-ignore false
 (weather))
 
-;; music
-(defwindow music
+;; spotify
+(defwindow spotify
            :monitor 0
            :geometry (geometry :x "310px"
                                :y "5px"
@@ -154,7 +153,7 @@
            :reserve (struts :distance "80px" :side "top")
            :windowtype "dock"
            :wm-ignore false
-(music))
+(spotify))
 
 
 ;; apps
