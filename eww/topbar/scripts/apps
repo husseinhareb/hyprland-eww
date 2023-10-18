@@ -1,0 +1,39 @@
+#!/bin/bash
+
+if [[ "$1" == "--kitty" ]]; then
+	kitty &
+
+elif [[ "$1" == "--firefox" ]]; then
+	firefox &
+
+elif [[ "$1" == "--thunar" ]]; then
+	thunar ~ &
+
+elif [[ "$1" == "--discord" ]]; then
+	discord &
+
+
+elif [[ "$1" == "--spotify" ]]; then
+	spotify &
+
+
+elif [[ "$1" == "--vscode" ]]; then
+	code &
+	
+elif [[ "$1" == "--notion" ]]; then
+	notion-app &
+
+	
+elif [[ "$1" == "--vlc" ]]; then
+	vlc &
+
+elif [[ "$1" == "--ml" ]]; then
+	firefox --new-tab "https://mail.google.com"
+
+elif [[ "$1" == "--pow" ]]; then
+	xfce4-power-manager-settings &
+
+elif [[ "$1" == "--nm" ]]; then
+	networkmanager_dmenu
+
+fi
