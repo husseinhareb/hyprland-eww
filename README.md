@@ -15,6 +15,7 @@ I also created gradient colors for cava that matches the wallpaper with a neofet
 Lastly,as show in the picture is a neovim configuration to maximize productivity with mutliple cool plugins installed.
 
 NOTE:You will have to change the HOME path to yours.
+
 NOTE:Don't forget to make all of the bash files executable by using `chmod +x /path/to/file`.
 
 NOTE:You should add your city and an API key in the python script for the weather, you can get one for free from [here](https://openweathermap.org/) .
