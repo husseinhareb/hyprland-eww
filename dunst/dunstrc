@@ -1,0 +1,11 @@
+[urgency_normal]
+    background = "#181825AA"
+    foreground = "#CDD6F4"
+    timeout = 10
+
+[urgency_critical]
+    background = "#181825AA"
+    foreground = "#F38BA8"
+    frame_color = "#F38BA8"
+    timeout = -1
+    format = "<b>%s</b>\n%b"
