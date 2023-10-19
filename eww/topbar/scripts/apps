@@ -27,13 +27,4 @@ elif [[ "$1" == "--notion" ]]; then
 elif [[ "$1" == "--vlc" ]]; then
 	vlc &
 
-elif [[ "$1" == "--ml" ]]; then
-	firefox --new-tab "https://mail.google.com"
-
-elif [[ "$1" == "--pow" ]]; then
-	xfce4-power-manager-settings &
-
-elif [[ "$1" == "--nm" ]]; then
-	networkmanager_dmenu
-
 fi
