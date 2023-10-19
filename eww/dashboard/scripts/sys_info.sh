@@ -56,6 +56,4 @@ if [[ "$1" == "--cpu" ]]; then
 elif [[ "$1" == "--mem" ]]; then
 	get_mem
 
-elif [[ "$1" == "--disk" ]]; then
-	get_disk
 fi
